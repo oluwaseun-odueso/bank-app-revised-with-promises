@@ -1,0 +1,129 @@
+const users = [
+    {
+        username : "CrossJanet",
+        password : "034"
+    },
+    {
+        username : "Titilayo03",
+        password : "Madamtitiforyou"
+    },
+    {
+        username : "Talaba",
+        password : "054"
+    },
+    {
+        username : "Omolara",
+        password :"Omogelabouncing"
+    }, 
+    {
+        username : "Adebisi",
+        password : "thegirl"
+    }, 
+    {
+        username : "Omodolapo",
+        password : "326"
+    },
+    {
+        username : "Oluwabamise",
+        password : "bambam"
+    },
+    {
+        username : "Moyosore",
+        password : "1158"
+    },  
+    {
+        username : "DanielSumah",
+        password: "bobonabigiboy"
+    },
+    {
+        username : "Princess",
+        password : "4309"
+    }
+]
+
+
+
+
+
+// const main = (username, password) => {
+//     if (checkDetails(username, password) == true) {
+//         console.log("Your account balance is", getBalance(username))
+//     }
+
+//     else {
+//         console.log("This customer does not exist.")
+//     }
+// }
+
+// main("Adebisi", "thegirl")
+
+
+
+/*
+// Function to check the details of a new user
+const create = (username, password) => {
+    for (let i = 0; i < users.length; i++) {
+        if (username == users[i].username && password == users[i].password) {
+            return "User already exist!" 
+        }
+
+        else if (username == users[i].username && password != users[i].password) {
+            return "Kindly user another username."
+        }
+
+        else if (username != users[i].username && password == users[i].password) {
+            return "Kindly use another password."
+        }
+    }
+    return createUser(username, password)
+};
+
+
+
+// This function checks a user's details and appends it to the existing user array
+const createUser = (username, password) => {
+    users.push({"username" : username, "password" : password}) 
+    return createDetails(username, firstName = '', lastName = '', phoneNumber = '', emailAdrress = '', accountBalance = '')  
+};
+
+
+// This function accepts a user's details and appends it to the existing details array
+const createDetails = (username, firstName, lastName, phoneNumber, emailAdrress, accountBalance) => {
+    details.push({username, firstName, lastName, phoneNumber, emailAdrress, accountBalance})
+        //"Username" : username, 
+        //"First Name" : firstName, 
+        //"Last Name" : lastName, 
+        //"Phone Number" : phoneNumber, 
+        //"Email Address" : emailAdrress, 
+        //"Account Balance" : accountBalance});
+
+    return details
+    
+};
+*/
+
+
+
+/*
+const checkProperty = (property) => {
+    return property in details[0]
+}
+
+const changeProperty = (username, property, newValue) => {
+    for (let i = 0; i < details.length; i++) {
+        if (username == details[i].Username) {
+            details[i][property] = newValue
+            return details[i]
+        }
+    }    
+}
+
+const replace = (username, property, newValue) => {
+    if (checkProperty == true) {
+        return changeProperty(username, property, newValue)
+    }
+}
+
+console.log(changeProperty("Omodolapo", "First Name", "Adedolapo"))
+*/
+
