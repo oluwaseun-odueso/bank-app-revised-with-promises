@@ -1,81 +1,78 @@
-const userDatabase = [
-    {"CrossJanet" : {
-        "First Name" : "Oluwaseun",
-        "Last Name" : "Odueso",
-        "Phone Number" : 09075840934,
-        "Email Address" : "timpel@yahoo.com",
-        "Account Balance" : 1000000000}
-    },
+[
+    {"username" : "Princess",
+    "first_name" : "Princess",
+    "last_name" : "Mbah",
+    "phone_number" : "08134394450",
+    "email" : "princessmbah@gmail.com",
+    "balance" : "3000000"}
 
-    {"Titilayo03" : {
-        "First Name" : "Titilayo",
-        "Last Name" : "Amoroof",
-        "Phone Number" : 09022846738,
-        "Email Address" : "titiamoroof@gmail.com",
-        "Account Balance" : 1000}
-    },
+    {"username" : "CrossJanet",
+    "first_name" : "Oluwaseun",
+    "last_name" : "Odueso",
+    "phone_number" : "09075840934",
+    "email" : "timpel@yahoo.com",
+    "balance" : "1000000000"},
 
-    {"Talaba" : {
-        "First Name" : "Talaba",
-        "Last Name" : "Omotokunbo",
-        "Phone Number" : 090755893934,
-        "Email Address" : "tokunbo10@hotmail.com",
-        "Account Balance" : 50000}
-    },
+    {"username" : "Titilayo03",
+    "first_name" : "Titilayo",
+    "last_name" : "Amoroof",
+    "phone_number" : "09022846738",
+    "email" : "titiamoroof@gmail.com",
+    "balance" : "1000"},
 
-    {"Omolara" : {
-        "First Name" : "Omolara",
-        "Last Name" : "Odueso",
-        "Phone Number" : 09032146738,
-        "Email Address" : "omolaraodueso@gmail.com",
-        "Account Balance" : 70000}
-    },
+    {"username" : "Talaba",
+    "first_name" : "Talaba",
+    "last_name" : "Omotokunbo",
+    "phone_number" : "090755893934",
+    "email" : "tokunbo10@hotmail.com",
+    "balance" : "50000"},
 
-    {"Adebisi" : {
-        "First Name" : "Adebisi",
-        "Last Name" : "Adebanjo",
-        "Phone Number" : 09033701732,
-        "Email Address" : "adebisiadebanjo@yahoo.com",
-        "Account Balance" : 770000}
-    },
+    {"username" : "Omolara",
+    "first_name" : "Omolara",
+    "last_name" : "Odueso",
+    "phone_number" : "09032146738",
+    "email" : "omolaraodueso@gmail.com",
+    "balance" : "70000"},
 
-    {"Omodolapo" : {
-        "First Name" : "Omodolapo",
-        "Last Name" :  " Olaiya",
-        "Phone Number" : 09073347721,
-        "Email Address" : "omodolapo@yahoo.com",
-        "Account Balance" : 400000}
-    },
+    {"username" : "Adebisi",
+    "first_name" : "Adebisi",
+    "last_name" : "Adebanjo",
+    "phone_number" : "09033701732",
+    "email" : "adebisiadebanjo@yahoo.com",
+    "balance" : "770000"},
 
-    {"Oluwabamise" : {
-        "First Name" : "Oluwabamise",
-        "Last Name" : "Jinadu",
-        "Phone Number" : 09075547722,
-        "Email Address" : "bamisejinadu@hotmail.com",
-        "Account Balance" : 940000}
-    },
+    {"username" : "Omodolapo",
+    "first_name" : "Omodolapo",
+    "last_name" :  " Olaiya",
+    "phone_number" : "09073347721",
+    "email" : "omodolapo@yahoo.com",
+    "balance" : "400000"},
 
-    {"Moyosore" : {
-        "First Name" : "Moyosore",
-        "Last Name" : "Odebode",
-        "Phone Number" : 09028331973,
-        "Email Address" : "moyoodebode@hotmail.com",
-        "Account Balance" : 30000}
-    },
+    {"username" : "Oluwabamise",
+    "first_name" : "Oluwabamise",
+    "last_name" : "Jinadu",
+    "phone_number" : "09075547722",
+    "email" : "bamisejinadu@hotmail.com",
+    "balance" : "940000"},
 
-    {"DanielSumah" : {
-        "First Name" : "Daniel",
-        "Last Name" : "Sumah",
-        "Phone Number" : 09028334452,
-        "Email Address" : "danielsumah@gmail.com",
-        "Account Balance" : 1000000000}
-    },
+    {"username" : "Moyosore",
+    "first_name" : "Moyosore",
+    "last_name" : "Odebode",
+    "phone_number" : "09028331973",
+    "email" : "moyoodebode@hotmail.com",
+    "balance" : "30000"},
 
-    {"Princess" : {
-        "First Name" : "Princess",
-        "Last Name" : "Mbah",
-        "Phone Number" : 08134394450,
-        "Email Address" : "princessmbah@gmail.com",
-        "Account Balance" : 3000000}
-    }
+    {"username" : "DanielSumah",
+    "first_name" : "Daniel",
+    "last_name" : "Sumah",
+    "phone_number" : "09028334452",
+    "email" : "danielsumah@gmail.com",
+    "balance" : "1000000000"},
+
+    {"username" : "Princess",
+    "first_name" : "Princess",
+    "last_name" : "Mbah",
+    "phone_number" : "08134394450",
+    "email" : "princessmbah@gmail.com",
+    "balance" : "3000000"}
 ]

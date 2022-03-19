@@ -1,35 +1,35 @@
 // This function checks the details of a user to be true
-const checkDetails = (username, password) => {
-    for (let i = 0; i < users.length; i++) {
-        if (username == users[i].username && password == users[i].password) {
-            return true;
-        };
-    };
-    return false;
-};
+// const checkDetails = (username, password) => {
+//     for (let i = 0; i < users.length; i++) {
+//         if (username == users[i].username && password == users[i].password) {
+//             return true;
+//         };
+//     };
+//     return false;
+// };
 
 
 // This function deletes user details
-const deleteDetails = (username, password) => {
-    if (checkDetails(username, password) == true) {
-        for (let i = 0; i < details.length; i++) {
-            if (username == details[i].Username) {
-                details.splice(i, 1);
-                return details;
-            };
-        };
-    };
-};
+// const deleteDetails = (username, password) => {
+//     if (checkDetails(username, password) == true) {
+//         for (let i = 0; i < details.length; i++) {
+//             if (username == details[i].username) {
+//                 details.splice(i, 1);
+//                 return details;
+//             };
+//         };
+//     };
+// };
 
 
 // This function gets the balance of a user and returns it.
-const getBalance = (username) => {
-    for (let i = 0; i < details.length; i++) {
-        if (username == details[i].Username) {
-            return details[i]["Account Balance"];
-        };
-    };
-};
+// const getBalance = (username) => {
+//     for (let i = 0; i < details.length; i++) {
+//         if (username == details[i].Username) {
+//             return details[i]["Account Balance"];
+//         };
+//     };
+// };
 
 
 // This function checks for the existence of a property
@@ -47,11 +47,11 @@ const changeProperty = (username, property, newValue) => {
     };
 };
 
-const replace = (username, property, newValue) => {
-    if (checkProperty == true) {
-        return changeProperty(username, property, newValue);
-    };
-};
+// const replace = (username, property, newValue) => {
+//     if (checkProperty == true) {
+//         return changeProperty(username, property, newValue);
+//     };
+// };
 
 //console.log(changeProperty("Omodolapo", "First Name", "Adedolapo"))
 
@@ -60,6 +60,24 @@ const replace = (username, property, newValue) => {
 const createUser = (username, password) => {
     users.push({"username" : username, "password" : password});
     return createDetails(username, firstName = '', lastName = '', phoneNumber = '', emailAdrress = '', accountBalance = '');
+};
+
+// Function to check the details of a new user
+const create = (username, password) => {
+    for (let i = 0; i < users.length; i++) {
+        if (username == users[i].username && password == users[i].password) {
+            return "User already exist!" 
+        }
+
+        else if (username == users[i].username && password != users[i].password) {
+            return "Kindly user another username."
+        }
+
+        else if (username != users[i].username && password == users[i].password) {
+            return "Kindly use another password."
+        }
+    }
+    return createUser(username, password)
 };
 
 
@@ -74,7 +92,6 @@ const createDetails = (username, firstName, lastName, phoneNumber, emailAdrress,
         //"Account Balance" : accountBalance});
 
     return details;
-    
 };
 
 
@@ -89,4 +106,18 @@ module.exports.checkProperty = checkProperty;
 module.exports.changeProperty = changeProperty;
 module.exports.replace = replace;
 module.exports.createUser = createUser;
+module.exports.create = create
 module.exports.createDetails = createDetails;
+
+
+// const main = (username, password) => {
+//     if (checkDetails(username, password) == true) {
+//         console.log("Your account balance is", getBalance(username))
+//     }
+
+//     else {
+//         console.log("This customer does not exist.")
+//     }
+// }
+
+// main("Adebisi", "thegirl")
