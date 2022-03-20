@@ -1,35 +1,35 @@
 // This function checks the details of a user to be true
-// const checkDetails = (username, password) => {
-//     for (let i = 0; i < users.length; i++) {
-//         if (username == users[i].username && password == users[i].password) {
-//             return true;
-//         };
-//     };
-//     return false;
-// };
+const checkDetails = (username, password) => {
+    for (let i = 0; i < users.length; i++) {
+        if (username == users[i].username && password == users[i].password) {
+            return true;
+        };
+    };
+    return false;
+};
 
 
 // This function deletes user details
-// const deleteDetails = (username, password) => {
-//     if (checkDetails(username, password) == true) {
-//         for (let i = 0; i < details.length; i++) {
-//             if (username == details[i].username) {
-//                 details.splice(i, 1);
-//                 return details;
-//             };
-//         };
-//     };
-// };
+const deleteDetails = (username, password) => {
+    if (checkDetails(username, password) == true) {
+        for (let i = 0; i < details.length; i++) {
+            if (username == details[i].username) {
+                details.splice(i, 1);
+                return details;
+            };
+        };
+    };
+};
 
 
 // This function gets the balance of a user and returns it.
-// const getBalance = (username) => {
-//     for (let i = 0; i < details.length; i++) {
-//         if (username == details[i].Username) {
-//             return details[i]["Account Balance"];
-//         };
-//     };
-// };
+const getBalance = (username) => {
+    for (let i = 0; i < details.length; i++) {
+        if (username == details[i].Username) {
+            return details[i]["Account Balance"];
+        };
+    };
+};
 
 
 // This function checks for the existence of a property
@@ -47,15 +47,15 @@ const changeProperty = (username, property, newValue) => {
     };
 };
 
-// const replace = (username, property, newValue) => {
-//     if (checkProperty == true) {
-//         return changeProperty(username, property, newValue);
-//     };
-// };
+const replace = (username, property, newValue) => {
+    if (checkProperty == true) {
+        return changeProperty(username, property, newValue);
+    };
+};
 
-//console.log(changeProperty("Omodolapo", "First Name", "Adedolapo"))
+// console.log(changeProperty("Omodolapo", "First Name", "Adedolapo"))
 
-
+// Last stop, to continue from here.
 // This function checks a user's details and appends it to the existing user array
 const createUser = (username, password) => {
     users.push({"username" : username, "password" : password});
@@ -85,11 +85,11 @@ const create = (username, password) => {
 const createDetails = (username, firstName, lastName, phoneNumber, emailAdrress, accountBalance) => {
     details.push({username, firstName, lastName, phoneNumber, emailAdrress, accountBalance});
         //"Username" : username, 
-        //"First Name" : firstName, 
-        //"Last Name" : lastName, 
-        //"Phone Number" : phoneNumber, 
-        //"Email Address" : emailAdrress, 
-        //"Account Balance" : accountBalance});
+        //"first_name" : firstName, 
+        //"last_name" : lastName, 
+        //"phone_number" : phoneNumber, 
+        //"email" : emailAdrress, 
+        //"balance" : accountBalance});
 
     return details;
 };

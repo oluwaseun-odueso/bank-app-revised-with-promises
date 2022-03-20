@@ -2,6 +2,7 @@
 const {writeFile, readFile} = require('fs');
 const { resolve } = require('path');
 
+
 // const obj = [
 //     {
 //         "name" : "Toluwani",
@@ -20,15 +21,11 @@ const writeData = (filename, obj) => {
         })
     })
 }
-async function getContent(){
-    let content = await writeFile(filename, obj)
-    console.log(content);
-}
 
 const readData = (filename) => {
     return new Promise((resolve, reject) => {
         readFile(filename, 'utf8', (err, data) => {
-            if (err) throw 'There is an error';
+            if (err) throw err;
 
             //console.log("Data has been read.")
             const a = JSON.parse(data);
@@ -42,7 +39,6 @@ function checkDetails(username, password) {
     return new Promise((resolve, reject) => {
         const collected = readData('./users.txt')
         collected
-            //.then(users => console.log(users))
             .then(users => {
                 for (let i = 0; i < users.length; i++) {
                     if (username == users[i].username && password == users[i].password) {
@@ -68,13 +64,13 @@ function deleteDetails(username, password) {
                                 console.log('User has been deleted.')
                                 console.log(database);   
 
-                                // writeData('./database', database)
+                                writeData('./database.txt', database)
 
                                 return
                             };
                         };
                     }
-                    console.log('Uzser does not exist')
+                    console.log('User does not exist')
             })
         })
 }
@@ -84,26 +80,78 @@ function deleteDetails(username, password) {
 function getBalance(username) {
     const collected = readData('./database.txt')
     collected
-        .then(details => {
-            for (let i = 0; i < details.length; i++) {
-                if (username == details[i].username) {
-                    console.log("Dear user, your account balance is", details[i]["Account Balance"]);
+        .then(database => {
+            for (let i = 0; i < database.length; i++) {
+                if (username == database[i].username) {
+                    console.log("Dear user, your account balance is", database[i].balance);
                 }; 
             };
         })
 }
 
 
-function replace(username, property, newValue) {
-
+// This function updates the changed property
+function updateChangedProperty(username, password, property, newValue) {
+    checkDetails(username, password) 
+        .then(
+            checkProperty(property)
+                .then(
+                    changeProperty(username, property, newValue)
+                        .then(result => console.log(result))
+                )
+        )
 }
-// const replace = (username, property, newValue) => {
-//     if (checkProperty == true) {
-//         return changeProperty(username, property, newValue);
-//     };
-// };
+
+updateChangedProperty("CrossJanet", "034", "first_name", "Oluwaseun")
+
+
+// // This function checks for the existence of a property
+function checkProperty(property) {
+    return new Promise((resolve, reject) => {
+        const collected = readData('./database.txt')
+        collected
+            .then(details => {
+                resolve(property in details[0]);
+            })
+    })
+}
+
+
+// This function changes a property and ammends it in the database
+function changeProperty(username, property, newValue) {
+    return new Promise((resolve, reject) => {
+        const collected = readData('./users.txt')
+        collected
+            .then(users => {
+                const accepted = readData('./database.txt')
+                accepted
+                    .then(database => {
+                        for (let i = 0; i < database.length; i++) {
+                            if (username == database[i].username) {
+                                database[i][property] = newValue;
+
+                                console.log("Your data has been updated.")
+                                resolve(database[i]);   
+
+                                writeData('./database.txt', database)
+
+                            };
+                        };
+                    })
+            })
+    })
+}
+
+
+
 
 
 // run functions here
-deleteDetails("Princess", "4309")
+// deleteDetails("Princess", "4309")
 // getBalance("CrossJanet")
+// updateDetails("DanielSumah", "bobonabigiboy")
+// checkProperty("username")
+// checkProperty("last_name")
+//     .then(res => console.log(res))
+// changeProperty("Crossjanet", "034", "phone_number", "09073347721")
+    // .then(res => console.log(res))
