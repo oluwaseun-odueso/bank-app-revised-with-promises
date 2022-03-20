@@ -2,7 +2,6 @@
 const {writeFile, readFile} = require('fs');
 const { resolve } = require('path');
 
-
 // const obj = [
 //     {
 //         "name" : "Toluwani",
@@ -93,16 +92,17 @@ function getBalance(username) {
 // This function updates the changed property
 function updateChangedProperty(username, password, property, newValue) {
     checkDetails(username, password) 
-        .then(
-            checkProperty(property)
-                .then(
-                    changeProperty(username, property, newValue)
-                        .then(result => console.log(result))
-                )
-        )
+        .then(resolve => {
+            if (resolve) {
+                checkProperty(property)
+                    .then(
+                        changeProperty(username, property, newValue)
+                            .then(result => console.log(result))
+                    )
+            }
+        })
+        .catch(err => console.log("Enter correct username and password."))
 }
-
-updateChangedProperty("CrossJanet", "034", "first_name", "Oluwaseun")
 
 
 // // This function checks for the existence of a property
@@ -123,6 +123,16 @@ function changeProperty(username, property, newValue) {
         const collected = readData('./users.txt')
         collected
             .then(users => {
+                if (property == "username") {
+                    for (let i = 0; i < users.length; i++) {
+                        if (username == users[i].username) {
+                            users[i].username = newValue
+                            
+                            writeData('./users.txt', users)
+                            console.log('Users.txt username has been updated')
+                        }
+                    }
+                }
                 const accepted = readData('./database.txt')
                 accepted
                     .then(database => {
@@ -135,8 +145,11 @@ function changeProperty(username, property, newValue) {
 
                                 writeData('./database.txt', database)
 
+                                // writeData('.users.txt', )
+
                             };
                         };
+                        
                     })
             })
     })
@@ -155,3 +168,4 @@ function changeProperty(username, property, newValue) {
 //     .then(res => console.log(res))
 // changeProperty("Crossjanet", "034", "phone_number", "09073347721")
     // .then(res => console.log(res))
+    // updateChangedProperty("Tani", "054", "username", "Talaba")
