@@ -2,21 +2,11 @@
 const {writeFile, readFile} = require('fs');
 const { resolve } = require('path');
 
-// const obj = [
-//     {
-//         "name" : "Toluwani",
-//         "age" : 30,
-//         "town" : "Ado-Ekiti"
-//     }
-// ]
 const writeData = (filename, obj) => {
     return new Promise((resolve, reject) => {
         const newObj = JSON.stringify(obj)
         writeFile(filename, newObj, (err, data) => {
             if (err) throw err;
-
-            console.log('Data has been written.')
-            //resolve(a);
         })
     })
 }
@@ -26,9 +16,9 @@ const readData = (filename) => {
         readFile(filename, 'utf8', (err, data) => {
             if (err) throw err;
 
-            //console.log("Data has been read.")
             const a = JSON.parse(data);
             resolve(a);
+            reject(new Error)
         })  
     })
 } 
@@ -44,19 +34,19 @@ function checkDetails(username, password) {
                         resolve(true);
                     };
                 };
-                reject(false);
+                reject(new Error("Enter correct details"));
             })
     })
 }
 
+// This function deletes a user's details
 function deleteDetails(username, password) {
     const collected = readData('./database.txt')
     collected
         .then(database => {
             checkDetails(username, password)
                 .then(resolve => {
-                    if (resolve) {
-                        // console.log(database)
+                    if (resolve === true) {
                         for (let i = 0; i < database.length; i++) {
                             if (username == database[i].username) {
                                 database.splice(i, 1);
@@ -64,46 +54,46 @@ function deleteDetails(username, password) {
                                 console.log(database);   
 
                                 writeData('./database.txt', database)
-
                                 return
                             };
                         };
                     }
-                    console.log('User does not exist')
-            })
+                })
+                .catch(err => console.log(err.message))
         })
 }
-
 
 // This function gets the balance of a user and returns it.
-function getBalance(username) {
-    const collected = readData('./database.txt')
-    collected
-        .then(database => {
-            for (let i = 0; i < database.length; i++) {
-                if (username == database[i].username) {
-                    console.log("Dear user, your account balance is", database[i].balance);
-                }; 
-            };
+function getBalance(username, password) {
+    checkDetails(username, password)
+        .then(resolve => {
+            if (resolve === true) {
+                const collected = readData('./database.txt')
+                collected
+                    .then(database => {
+                        for (let i = 0; i < database.length; i++) {
+                            if (username == database[i].username) {
+                                console.log("Dear user, your account balance is", database[i].balance);
+                            }; 
+                        };
+                    })
+            }
         })
+        .catch(err => console.log(err.message))
 }
 
-
 // This function updates the changed property
-function updateChangedProperty(username, password, property, newValue) {
+function updateProperty(username, password, property, newValue) {
     checkDetails(username, password) 
         .then(resolve => {
-            if (resolve) {
-                checkProperty(property)
-                    .then(
-                        changeProperty(username, property, newValue)
-                            .then(result => console.log(result))
-                    )
-            }
+            checkProperty(property)
+                .then(
+                    updateProcess(username, property, newValue)
+                        .then(result => console.log(result))
+                )
         })
         .catch(err => console.log("Enter correct username and password."))
 }
-
 
 // // This function checks for the existence of a property
 function checkProperty(property) {
@@ -112,13 +102,13 @@ function checkProperty(property) {
         collected
             .then(details => {
                 resolve(property in details[0]);
+                reject(new Error("Property does not exist"))
             })
     })
 }
 
-
 // This function changes a property and ammends it in the database
-function changeProperty(username, property, newValue) {
+function updateProcess(username, property, newValue) {
     return new Promise((resolve, reject) => {
         const collected = readData('./users.txt')
         collected
@@ -144,28 +134,82 @@ function changeProperty(username, property, newValue) {
                                 resolve(database[i]);   
 
                                 writeData('./database.txt', database)
-
-                                // writeData('.users.txt', )
-
                             };
-                        };
-                        
+                        };  
                     })
             })
     })
 }
 
+//This function adds to the existing users
+function addToUser(username, password) {
+    return new Promise((resolve, reject) => {
+        const collected = readData('./users.txt')
+        collected
+            .then(users => {
+                users.push({"username" : username, "password" : password})
+                writeData('./users.txt', users)
 
+                console.log("A new user details has been added to the users.")
+                resolve(users)
+            })
+        })
+}
 
+// This function checks the details of a user to be true
+function checkDetailsForCreate(username, password) {
+    return new Promise((resolve, reject) => {
+        const collected = readData('./users.txt')
+        collected
+            .then(users => {
+                for (let i = 0; i < users.length; i++) {
+                    if (username == users[i].username && password == users[i].password) {
+                        reject(new Error("User already exist"));
+                    };
+                };
+                resolve(true);
+            })
+    })
+}
 
+// This function creates a new user
+function create(username, password) {
+    const collected = readData('./users.txt')
+    collected
+        .then(users => {
+            checkDetailsForCreate(username, password)
+                .then(resolve => {
+                    if (resolve === true) {
+                        addToUser(username, password)
+                            .then(resolve => console.log(resolve)),
+                        addToDetails(username, firstName = '', lastName = '', phoneNumber = '', emailAdrress = '', accountBalance = '')
+                            .then(resolve => console.log(resolve))
+                    }
+                })
+                .catch(err => console.log(err.message))
+        })
+}
 
-// run functions here
-// deleteDetails("Princess", "4309")
-// getBalance("CrossJanet")
-// updateDetails("DanielSumah", "bobonabigiboy")
-// checkProperty("username")
-// checkProperty("last_name")
-//     .then(res => console.log(res))
-// changeProperty("Crossjanet", "034", "phone_number", "09073347721")
-    // .then(res => console.log(res))
-    // updateChangedProperty("Tani", "054", "username", "Talaba")
+//This function adds to the existing database
+function addToDetails(username, firstName, lastName, phoneNumber, emailAdrress, accountBalance) {
+    return new Promise((resolve, reject) => {
+        const collected = readData('./database.txt')
+        collected
+            .then(details => {
+                details.push({
+                    "username" : username, 
+                    "first_name" : firstName, 
+                    "last_name" : lastName, 
+                    "phone_number" : phoneNumber, 
+                    "email" : emailAdrress,
+                    "balance" : accountBalance});
+
+                writeData('./database.txt', details)
+
+                console.log("A new user details has been added to the database.")
+            
+                resolve(details);
+                reject(new Error)
+            })
+    })
+}

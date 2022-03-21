@@ -74,9 +74,10 @@ const database = [
 
 // database.splice(9, 1)
 // console.log(database)
+ const newArray = [
+     {"name" : "Segun", "age" : "34"},
+     {"name" : "Toluwani", "age" : "17"}
+ ]
 
-const username = 'Princess'
-console.log(database[9].username)
-database.splice(9, 1)
-console.log(database)
-// (username == details[i].username)
+ newArray.push({"name" : "Tobi", "age" : "10"})
+ console.log(newArray)

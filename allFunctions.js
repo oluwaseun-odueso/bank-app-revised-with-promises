@@ -84,15 +84,18 @@ const create = (username, password) => {
 // This function accepts a user's details and appends it to the existing details array
 const createDetails = (username, firstName, lastName, phoneNumber, emailAdrress, accountBalance) => {
     details.push({username, firstName, lastName, phoneNumber, emailAdrress, accountBalance});
-        //"Username" : username, 
-        //"first_name" : firstName, 
-        //"last_name" : lastName, 
-        //"phone_number" : phoneNumber, 
-        //"email" : emailAdrress, 
-        //"balance" : accountBalance});
 
-    return details;
+        // "username" : username, 
+        // "first_name" : firstName, 
+        // "last_name" : lastName, 
+        // "phone_number" : phoneNumber, 
+        // "email" : emailAdrress, 
+        // "balance" : accountBalance});
+
+    // return details;
 };
+
+createDetails("tani", "Tanimola", "Oni", "09060060054", "tuna@yahoo.com", "8599")
 
 
 //console.log(create("Sumah", "0509"))
